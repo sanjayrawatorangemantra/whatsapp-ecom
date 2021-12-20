@@ -7,6 +7,7 @@ var product = new Schema({
     status: Boolean,
     updated: { type: Date, default: Date.now() },
     price: { type: Number, min: 0, max: 10000, required: true },
+    weight: String,
     //mixed: Schema.Types.Mixed,
     //_someId: Schema.Types.ObjectId,
     //array: [],
