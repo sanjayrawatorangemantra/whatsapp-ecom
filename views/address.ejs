@@ -1,0 +1,17 @@
+
+    <div class="data">
+        <h2>Outlets</h2>
+        <ul>
+            <% for(var i=0; i < address.length; i++) { %>
+                <li>
+                  <td><%= address[i].street %></td>
+                  <td><%= address[i].address %></td>
+                  <td><%= address[i].landmark %></td>
+                  <td><%= address[i].city %></td>
+                   <td><%= address[i].pincode %></td>
+                  <td><%= address[i].state %></td>
+                  <td><%= address[i].country %></td>
+                </li>
+             <% } %>
+        </ul>
+    </div>

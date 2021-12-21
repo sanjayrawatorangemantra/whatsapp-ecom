@@ -1,11 +1,13 @@
 var express = require('express')
 var app = require('express')();
 var product_controller = require('./controllers/product.js');
+var address_controller = require('./controllers/address.js');
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/product',product_controller)
+app.use('/address',address_controller)
 
 app.get('/', function(req, res) {
     res.render('index');
