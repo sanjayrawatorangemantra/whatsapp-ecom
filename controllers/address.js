@@ -32,6 +32,16 @@ Router.get('/get',function(req,res){
     })
 })
 
+Router.get('/delbyid/:id',function(req,res){
+    console.log(req.params.id);
+    var doc = addressModel.find({ _id:req.params.id }).deleteOne().exec();
+    res.json(doc);
+})
+
+Router.get('/delall',function(req,res){
+    res.json(addressModel.remove().exec());
+})
+
 Router.get('/list',function(req,res){
     addressModel.find({ }, 'street address landmark city pincode state country', function (err, items) {
         if (err) return handleError(err);

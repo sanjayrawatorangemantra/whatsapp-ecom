@@ -1,17 +1,45 @@
 
-    <div class="data">
-        <h2>Outlets</h2>
-        <ul>
-            <% for(var i=0; i < address.length; i++) { %>
-                <li>
-                  <td><%= address[i].street %></td>
-                  <td><%= address[i].address %></td>
-                  <td><%= address[i].landmark %></td>
-                  <td><%= address[i].city %></td>
-                   <td><%= address[i].pincode %></td>
-                  <td><%= address[i].state %></td>
-                  <td><%= address[i].country %></td>
-                </li>
-             <% } %>
-        </ul>
-    </div>
+<html>
+    <head>
+        <%- include ('./partials/head') %>
+    </head>
+    
+    <body>
+        <!-- As a link -->
+        <nav class="navbar navbar-light bg-light " style="background-color: lightblue;">
+            <a class="navbar-brand" href="#"><h4>Outlets</h4></a>
+        </nav>
+     
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"><h2>Our Stores</h2></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+    
+                    <% for(var i=0; i < address.length; i++) { %>
+                        <div class="col-md-3">
+                        
+                        <div class="card" style="border: 1px solid black;padding: 10px;">
+                            <div class="card-body">
+                              <h5 class="card-title "><h5 style="text-transform: capitalize;"><%= address[i].address %></h5>
+                              <p class="card-text">
+                                      <span><%= address[i].street %></span><br>
+                                      <!-- <span><%= address[i].landmark %></span><br> -->
+                                      <span><%= address[i].city %></span><br>
+                                       <span><%= address[i].pincode %></span><br>
+                                      <span><%= address[i].state %></span><br>
+                                      <span><%= address[i].country %></span><br>
+
+                              </p>
+
+                            </div>
+                          </div>  
+
+                   </div>
+                    <% } %>        
+            </div>
+          </div>
+    </body>
+    </html>     

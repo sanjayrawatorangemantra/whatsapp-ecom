@@ -1,0 +1,47 @@
+{
+	"street":"33 MH",
+	"address":"premnagar",
+	"city":"DEHRADUN",
+	"state":"UTTARAKHAND",
+	"country":"INDIA",
+	"pincode":"248001",
+	"lat":"30.3340",
+	"long":"77.9602",
+	"status":true
+}
+
+{
+	"street":"33 MH",
+	"address":"mussourie",
+	"city":"mussourie",
+	"state":"UTTARAKHAND",
+	"country":"INDIA",
+	"pincode":"248001",
+	"lat":"30.4598",
+	"long":"78.0644",
+	"status":true
+}
+
+{
+	"street":"33 MH",
+	"address":"rishikesh",
+	"city":"rishikesh",
+	"state":"UTTARAKHAND",
+	"country":"INDIA",
+	"pincode":"248001",
+	"lat":"30.0869",
+	"long":"78.2676",
+	"status":true
+}
+
+{
+	"street":"33 MH",
+	"address":"devprayag",
+	"city":"devprayag",
+	"state":"UTTARAKHAND",
+	"country":"INDIA",
+	"pincode":"248001",
+	"lat":"30.1459",
+	"long":"78.5993",
+	"status":true
+}

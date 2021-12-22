@@ -1,12 +1,57 @@
+<html>
+<head>
+    <%- include ('./partials/head') %>
+</head>
 
-    <div class="data">
-        <h2>Dummy products</h2>
-        <ul>
-            <% for(var i=0; i < products.length; i++) { %>
-                <li>
-                  <td><%= products[i].name %></td>
-                  <!-- <td><%= products[i].price %></td> -->
-                </li>
-             <% } %>
-        </ul>
+<body>
+    <!-- As a link -->
+    <nav class="navbar navbar-light bg-light " style="background-color: lightblue;">
+        <a class="navbar-brand" href="#"><h4>products</h4></a>
+    </nav>
+ 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"><h2>Dummy products</h2></div>
+        </div>
     </div>
+    <div class="container">
+        <div class="row">
+
+                <% for(var i=0; i < products.length; i++) { %>
+                    <div class="col-md-3">
+                    
+                    <div class="card" style="border: 1px solid black;padding: 10px;">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= products[i].name %></h5>
+                          <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the
+                            card's content.
+                          </p>
+                          <button type="button" class="btn btn-primary">add</button>
+                        </div>
+                      </div>  
+  
+                    <!-- <div class="card">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img
+                        src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
+                        class="img-fluid"
+                    />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                    </div>
+                    <div class="card-body">
+                    <h5 class="card-title"><%= products[i].name %></h5>
+                    <p class="card-text">
+                        <%= products[i].name %>
+                    </p>
+                    <a href="#!" class="btn btn-primary">Button</a>
+                    </div>
+                </div> -->
+               </div>
+                <% } %>        
+        </div>
+      </div>
+</body>
+</html>     

@@ -10,6 +10,8 @@ var address = new Schema({
     city: String,
     state: String,
     country: String,
+    longitude: String,
+    latitude: String,
     //mixed: Schema.Types.Mixed,
     //_someId: Schema.Types.ObjectId,
     //array: [],
