@@ -28,6 +28,22 @@ Router.get('/get',function(req,res){
     })
 })
 
+Router.get('/getProducts',function(req,res){
+    productModel.find({ }, 'name code price weight price', function (err, items) {
+        if (err) return handleError(err);
+        // 'athletes' contains the list of athletes that match the criteria.
+        // res.json(items)
+
+        var pro =  items.map(function(obj,i){
+            return i+' '+obj.name;
+        })
+
+        pro = pro.join('<br>')
+
+        res.send(pro);
+    })
+})
+
 Router.get('/list',function(req,res){
     productModel.find({ }, 'name code', function (err, items) {
         if (err) return handleError(err);
