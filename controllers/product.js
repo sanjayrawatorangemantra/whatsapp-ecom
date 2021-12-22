@@ -20,7 +20,7 @@ Router.post('/add',function(req,res){
 
 
 Router.get('/get',function(req,res){
-    productModel.find({ }, 'name price weight price', function (err, items) {
+    productModel.find({ }, 'name code price weight price', function (err, items) {
         if (err) return handleError(err);
         // 'athletes' contains the list of athletes that match the criteria.
         res.json(items)
@@ -33,6 +33,16 @@ Router.get('/list',function(req,res){
         // 'athletes' contains the list of athletes that match the criteria.
         res.render('product',{products:items});
     })
+})
+
+Router.get('/delbyid/:id',function(req,res){
+    console.log(req.params.id);
+    var doc = productModel.find({ _id:req.params.id }).deleteOne().exec();
+    res.json(doc);
+})
+
+Router.get('/delall',function(req,res){
+    res.json(productModel.remove().exec());
 })
 
 module.exports = Router;

@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var product = new Schema({
     name: String,
+    code: String,
     //binary: Buffer,
     status: Boolean,
     updated: { type: Date, default: Date.now() },
