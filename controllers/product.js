@@ -23,12 +23,13 @@ Router.get('/get',function(req,res){
     productModel.find({ }, 'name code price weight price', function (err, items) {
         if (err) return handleError(err);
         // 'athletes' contains the list of athletes that match the criteria.
-        res.json(items)
+        // res.json(items)
+        res.send('1 option1 <br> 2 option')
     })
 })
 
 Router.get('/list',function(req,res){
-    productModel.find({ }, 'name ', function (err, items) {
+    productModel.find({ }, 'name code', function (err, items) {
         if (err) return handleError(err);
         // 'athletes' contains the list of athletes that match the criteria.
         res.render('product',{products:items});

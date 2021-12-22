@@ -45,3 +45,76 @@
 	"long":"78.5993",
 	"status":true
 }
+
+{
+	"name":"Pizza",
+	"code":"L1",
+	"price":20.0,
+	"weight":"2g",
+	"status":true
+}
+
+{
+	"name":"Burger",
+	"code":"L2",
+	"price":20.0,
+	"weight":"2g",
+	"status":true
+}
+
+{
+	"name":"Momos",
+	"code":"L3",
+	"price":20.0,
+	"weight":"2g",
+	"status":true
+}
+{
+	"name":"Pepsi",
+	"code":"S1",
+	"price":20.0,
+	"weight":"2g",
+	"status":true
+}
+
+{
+	"name":"Coke",
+	"code":"S2",
+	"price":20.0,
+	"weight":"2g",
+	"status":true
+}
+
+{
+	"name":"Sprite",
+	"code":"S3",
+	"price":20.0,
+	"weight":"2g",
+	"status":true
+}
+
+{
+	"name":"Pizza Pepsi Combo",
+	"code":"LS1",
+	"price":20.0,
+	"weight":"2g",
+	"status":true
+}
+
+{
+	"name":"Burger Coke Combo",
+	"code":"LS2",
+	"price":20.0,
+	"weight":"2g",
+	"status":true
+}
+
+{
+	"name":"Momo Sprite Combo",
+	"code":"LS3",
+	"price":20.0,
+	"weight":"2g",
+	"status":true
+}
+
+
