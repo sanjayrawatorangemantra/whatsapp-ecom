@@ -76,8 +76,9 @@
             //'https://maps.google.com/maps?q=30.2845536,78.097141'
             var latlong = q.split('=')[q.split('=').length-1].split(',');
             
-            latlong = [ '30.2844554', '78.0974535' ];
-            
+            // latlong = [ '30.2844554', '78.0974535' ];
+            // latlong = [ '30.4543', '78.1114' ];
+           
             var poslat = parseFloat(latlong[0]); //[ '30.2845312', '78.0973485' ]
             //
             var poslng = parseFloat(latlong[1]);
