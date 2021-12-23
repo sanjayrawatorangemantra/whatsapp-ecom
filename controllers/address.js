@@ -70,7 +70,8 @@
     Router.get('/nearbylocation',function(req,res){
         addressModel.find({ }, 'street address landmark city pincode state country lat long', function (err, items) {
                 
-            console.log(req.query);
+            console.log(req);
+            console.log(req.params);
             var q = 'https://maps.google.com/maps?q=30.2845536,78.097141'
             var latlong = q.split('=')[q.split('=').length-1].split(',');
             
