@@ -92,7 +92,7 @@ console.log(items);
                 console.log(distance(poslat, poslng, items[i].lat, items[i].long, "K"));
                 // if this location is within 0.1KM of the user, add it to the list
                 if (distance(poslat, poslng, items[i].lat, items[i].long, "K") <= 10) {
-                    html = ' items[i].address;
+                    html = items[i].address;
                 }
             }
             console.log(html);
