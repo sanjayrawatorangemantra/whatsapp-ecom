@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/product',product_controller)
 app.use('/address',address_controller)
 
+
 app.get('/', function(req, res) {
     res.render('index');
 });
