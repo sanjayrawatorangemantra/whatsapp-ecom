@@ -105,9 +105,8 @@ Router.post('/getCart',function(req,res){
 })
 
 Router.get('/dummy',function(req,res){
-  res.json({dummy:'dummy'});
+  res.json({dummy:'<p>dummy</p><br><p>dummy</p>'});
 })
-
 Router.get('/delbyid/:id',function(req,res){
     console.log(req.params.id);
     var doc = productModel.find({ _id:req.params.id }).deleteOne().exec();
