@@ -76,7 +76,7 @@
             //'https://maps.google.com/maps?q=30.2845536,78.097141'
             var latlong = q.split('=')[q.split('=').length-1].split(',');
             
-
+console.log(latlong);
             var poslat = latlong[0];
             // 30.2783;
             var poslng = latlong[1];
@@ -91,6 +91,7 @@
                     html = '<p>' + items[i].address+'</p>';
                 }
             }
+            console.log(html);
             res.send(html);
             // if (err) return handleError(err);
             // // 'athletes' contains the list of athletes that match the criteria.
