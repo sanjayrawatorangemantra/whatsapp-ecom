@@ -96,7 +96,7 @@ console.log(items);
                 }
             }
             console.log(html);
-            res.send(html);
+            res.send({"location":html});
             // if (err) return handleError(err);
             // // 'athletes' contains the list of athletes that match the criteria.
             // res.render('address',{address:items});
