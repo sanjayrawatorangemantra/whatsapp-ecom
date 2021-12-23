@@ -93,13 +93,14 @@ Router.post('/getCart',function(req,res){
     cartModel.find({phone:req.body.phone}, 'choice phone item', function (err, items) {
         if (err) return handleError(err);
         // 'athletes' contains the list of athletes that match the criteria.
+        
         var custom_items = items.map((item)=>{
             if(item)
-            return {
-                name:item.item
-            }
+            return item.item
         })
-        res.json(custom_items)
+
+        res.json({cart_text:custom_items.join('\n')});
+
         // res.send('1 option1 <br> 2 option')
     })
 })
