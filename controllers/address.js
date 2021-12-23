@@ -86,15 +86,19 @@
             console.log(typeof(poslat));
             console.log(poslat,poslng);
 console.log(items);
-            var html='none';
 
+
+            var shortest = distance(poslat, poslng, items[0].lat, items[0].long, "K");
+            var html=items[0].address;
 
             for (var i = 0; i < items.length; i++) {
                 console.log(distance(poslat, poslng, items[i].lat, items[i].long, "K"));
                 // if this location is within 0.1KM of the user, add it to the list
-                if (distance(poslat, poslng, items[i].lat, items[i].long, "K") <= 10) {
+                if (distance(poslat, poslng, items[i].lat, items[i].long, "K") <= shortest) {
+                    shortest = distance(poslat, poslng, items[i].lat, items[i].long, "K");
                     html = items[i].address;
                 }
+                
             }
             console.log(html);
             res.json({location:html});
