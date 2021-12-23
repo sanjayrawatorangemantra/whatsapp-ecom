@@ -76,11 +76,14 @@
             //'https://maps.google.com/maps?q=30.2845536,78.097141'
             var latlong = q.split('=')[q.split('=').length-1].split(',');
             
+            //latlong = [ '30.2845312', '78.0973485' ];
+            console.log(typeof(latlong));
+
 console.log(latlong);
-            var poslat = parseFloat(latlong[0]);
-            // 30.2783;
+            var poslat = parseFloat(latlong[0]); //[ '30.2845312', '78.0973485' ]
+            //
             var poslng = parseFloat(latlong[1]);
-            //78.0909;
+            //
             
             var html='none';
 
