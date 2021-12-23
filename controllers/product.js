@@ -74,14 +74,16 @@ Router.post('/choose',function(req,res){
         })
 console.log(custom_item);
         // Create an instance of model SomeModel
-        let model = new cartModel({phone:phone,choice:choice,item:custom_item[0].name});
+        if(custom_item.length){
+            let model = new cartModel({phone:phone,choice:choice,item:custom_item[0].name});
 
-        // Save the new model instance, passing a callback
-        model.save(function (err) {
-            if (err) return handleError(err);
-            // saved!
-            res.json(req.body);
-        }); 
+            // Save the new model instance, passing a callback
+            model.save(function (err) {
+                if (err) return handleError(err);
+                // saved!
+                res.json(req.body);
+            }); 
+        }
     })
 })
 
@@ -100,6 +102,10 @@ Router.post('/getCart',function(req,res){
         res.json(custom_items)
         // res.send('1 option1 <br> 2 option')
     })
+})
+
+Router.get('/dummy',function(req,res){
+  res.json({dummy:'dummy'});
 })
 
 Router.get('/delbyid/:id',function(req,res){
