@@ -72,7 +72,8 @@
                 
             console.log(req);
             console.log(req.params);
-            var q = 'https://maps.google.com/maps?q=30.2845536,78.097141'
+            var q = req.body.address;
+            //'https://maps.google.com/maps?q=30.2845536,78.097141'
             var latlong = q.split('=')[q.split('=').length-1].split(',');
             
 
