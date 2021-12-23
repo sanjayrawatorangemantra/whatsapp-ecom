@@ -92,11 +92,11 @@ console.log(items);
                 console.log(distance(poslat, poslng, items[i].lat, items[i].long, "K"));
                 // if this location is within 0.1KM of the user, add it to the list
                 if (distance(poslat, poslng, items[i].lat, items[i].long, "K") <= 10) {
-                    html = '<p>' + items[i].address+'</p>';
+                    html = ' items[i].address;
                 }
             }
             console.log(html);
-            res.send({"location":html});
+            res.json({location:html});
             // if (err) return handleError(err);
             // // 'athletes' contains the list of athletes that match the criteria.
             // res.render('address',{address:items});
