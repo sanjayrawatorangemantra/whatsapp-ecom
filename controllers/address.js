@@ -76,18 +76,17 @@
             //'https://maps.google.com/maps?q=30.2845536,78.097141'
             var latlong = q.split('=')[q.split('=').length-1].split(',');
             
-            //latlong = [ '30.2845312', '78.0973485' ];
+            latlong = [ '30.2844554', '78.0974535' ];
             
-
-
             var poslat = parseFloat(latlong[0]); //[ '30.2845312', '78.0973485' ]
             //
             var poslng = parseFloat(latlong[1]);
             //
-            console.log(typeof(latlong[1]));
-            console.log(latlong[0],latlong[1]);
-
+            console.log(typeof(poslat));
+            console.log(poslat,poslng);
+console.log(items);
             var html='none';
+
 
             for (var i = 0; i < items.length; i++) {
                 console.log(distance(poslat, poslng, items[i].lat, items[i].long, "K"));
