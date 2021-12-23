@@ -67,7 +67,7 @@
         })
     })
 
-    Router.get('/nearbylocation',function(req,res){
+    Router.get('/nearbylocation/:nearby',function(req,res){
         addressModel.find({ }, 'street address landmark city pincode state country lat long', function (err, items) {
                 
             console.log(req);
