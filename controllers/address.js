@@ -71,9 +71,15 @@
         addressModel.find({ }, 'street address landmark city pincode state country lat long', function (err, items) {
                 
             console.log(req.query);
+            var q = 'https://maps.google.com/maps?q=30.2845536,78.097141'
+            var latlong = q.split('=')[q.split('=').length-1].split(',');
             
-            var poslat = 30.2783;
-            var poslng = 78.0909;
+
+            var poslat = latlong[0];
+            // 30.2783;
+            var poslng = latlong[1];
+            //78.0909;
+            
             var html='none';
 
             for (var i = 0; i < items.length; i++) {
