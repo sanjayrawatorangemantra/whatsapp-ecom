@@ -79,7 +79,7 @@
             //latlong = [ '30.2845312', '78.0973485' ];
             console.log(typeof(latlong));
 
-console.log(latlong);
+console.log(latlong[0]);
             var poslat = parseFloat(latlong[0]); //[ '30.2845312', '78.0973485' ]
             //
             var poslng = parseFloat(latlong[1]);
