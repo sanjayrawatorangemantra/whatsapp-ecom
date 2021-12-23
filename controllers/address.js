@@ -77,9 +77,9 @@
             var latlong = q.split('=')[q.split('=').length-1].split(',');
             
 console.log(latlong);
-            var poslat = latlong[0];
+            var poslat = parseFloat(latlong[0]);
             // 30.2783;
-            var poslng = latlong[1];
+            var poslng = parseFloat(latlong[1]);
             //78.0909;
             
             var html='none';
