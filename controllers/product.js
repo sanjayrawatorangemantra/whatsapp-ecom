@@ -118,6 +118,10 @@ Router.get('/delall',function(req,res){
     res.json(productModel.remove().exec());
 })
 
+Router.get('/delallcart',function(req,res){
+    res.json(cartModel.remove().exec());
+})
+
 module.exports = Router;
 
 // {
