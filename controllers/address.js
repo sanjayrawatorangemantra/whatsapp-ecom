@@ -77,14 +77,16 @@
             var latlong = q.split('=')[q.split('=').length-1].split(',');
             
             //latlong = [ '30.2845312', '78.0973485' ];
-            console.log(typeof(latlong));
+            
 
-console.log(latlong[0]);
+
             var poslat = parseFloat(latlong[0]); //[ '30.2845312', '78.0973485' ]
             //
             var poslng = parseFloat(latlong[1]);
             //
-            
+            console.log(typeof(latlong[1]));
+            console.log(latlong[0],latlong[1]);
+
             var html='none';
 
             for (var i = 0; i < items.length; i++) {
