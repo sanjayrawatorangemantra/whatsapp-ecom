@@ -105,7 +105,7 @@ Router.post('/getCart',function(req,res){
 })
 
 Router.get('/dummy',function(req,res){
-  res.json({dummy:'<p>dummy</p><br><p>dummy</p>'});
+  res.json({dummy:'dummy\ndummy'});
 })
 Router.get('/delbyid/:id',function(req,res){
     console.log(req.params.id);
