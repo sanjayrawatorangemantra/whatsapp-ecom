@@ -9,6 +9,7 @@ var product = new Schema({
     updated: { type: Date, default: Date.now() },
     price: { type: Number, min: 0, max: 10000, required: true },
     weight: String,
+    storeno:{ type: Number, min: 1, max: 10000, required: true },
     //mixed: Schema.Types.Mixed,
     //_someId: Schema.Types.ObjectId,
     //array: [],

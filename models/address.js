@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var address = new Schema({
     street: String,
+    storeno:{ type: Number, min: 1, max: 10000, required: true },
     address: String,
     //binary: Buffer,
     status: Boolean,
