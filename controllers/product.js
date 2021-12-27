@@ -34,11 +34,22 @@ Router.get('/get',function(req,res){
         var custom_items = items.map((item)=>{
             return {
                 id:item._id,
-                name:item.code+' '+item.name,
-                price:item.price
+                namewithcode:item.code+' '+item.name,
+                code:item.code,
+                name:item.name,
+                price:item.price,
+                weight:item.weight,
+                status:item.status,
+                storeno:item.storeno
             }
         })
-        res.status(200).json({data:custom_items})
+        if(custom_items.length){
+            res.status(200).json({data:custom_items,status:200,msg:'Record found'})
+        }
+        else{
+            res.status(404).json({data:custom_items,status:404,msg:'No Record found'})
+        }
+
         // res.send('1 option1 <br> 2 option')
     })
 })
@@ -107,7 +118,7 @@ post('/getCart',function(req,res){
             return item.item
         })
 
-        res.json({cart_text:custom_items.join('\n')});
+        res.status(200).json({cart_text:custom_items.join('\n')});
 
         // res.send('1 option1 <br> 2 option')
     })
@@ -119,18 +130,20 @@ post('/storeassign',function(req,res){
     var id =  req.body.id;
     var storeno =  req.body.storeno;
 
-    productModel.find({ }, 'name code price weight price', function (err, items) {
-        if (err) return handleError(err);
-        // 'athletes' contains the list of athletes that match the criteria.
-        var custom_items = items.map((item)=>{
-            return {
-                name:item.code+' '+item.name,
-                price:item.price
-            }
-        })
-        res.json(custom_items)
-        // res.send('1 option1 <br> 2 option')
-    })
+    var query = {_id:id},
+    update = { storeno: storeno },
+    options = { upsert: true, new: true, setDefaultsOnInsert: true };
+
+    // Find the document
+    productModel.findOneAndUpdate(query, update, options, function(error, result) {
+        if (error) return;
+        // do something with the document
+        if(result)
+            res.status(200).json({data:result,status:200,msg:'successfully assigned'});
+        else
+            res.status(404).json({data:result,status:400,msg:"error occured"});
+    });
+
 })
 
 Router.post('/upload',multipartyMiddleware,function(req,res){
@@ -191,7 +204,16 @@ Router.get('/dummy',function(req,res){
 Router.get('/delbyid/:id',function(req,res){
     console.log(req.params.id);
     var doc = productModel.find({ _id:req.params.id }).deleteOne().exec();
-    res.json(doc);
+    if(doc){
+        console.log(doc);
+        res.status(200).json({data:doc,status:200,msg:'successfully deleted'});
+    }
+    else{
+        console.log(doc);
+        res.status(400).json({data:[],status:200,msg:'error occured'});
+
+    }
+
 })
 
 Router.get('/delall',function(req,res){
