@@ -40,6 +40,26 @@
         // res.json({s:'s'});
     });
 
+    Router.post('/storeassign',function(req,res){
+
+    var id =  req.body.id;
+    var storeno =  req.body.storeno;
+
+    var query = {_id:id},
+    update = { storeno: storeno },
+    options = { upsert: true, new: true, setDefaultsOnInsert: true };
+
+    // Find the document
+    addressModel.findOneAndUpdate(query, update, options, function(error, result) {
+        if (error) return;
+        // do something with the document
+        if(result)
+            res.status(200).json({data:result,status:200,msg:'successfully assigned'});
+        else
+            res.status(404).json({data:result,status:400,msg:"error occured"});
+    });
+
+})
 
     Router.get('/get',function(req,res){
         addressModel.find({ }, 'street landmark city pincode state lat long', function (err, items) {
@@ -57,6 +77,14 @@
 
     Router.get('/delall',function(req,res){
         res.json(addressModel.remove().exec());
+    })
+
+    Router.get('/storelist',function(req,res){
+        addressModel.find({ }, 'storeno street address landmark city pincode state country lat long', function (err, items) {
+            if (err) return handleError(err);
+            // 'athletes' contains the list of athletes that match the criteria.
+            res.status(200).json({data:items,status:200,msg:'successfully fetched stores'});
+        })
     })
 
     Router.get('/list',function(req,res){

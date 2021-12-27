@@ -146,6 +146,19 @@ post('/storeassign',function(req,res){
 
 })
 
+Router.get('/storelist',function(req,res){
+
+    productModel.find().distinct('storeno', function(error, ids) {
+        if(!error)
+            res.status(200).json({data:ids,status:200,msg:'fetched stores'});
+        else
+            res.status(404).json({data:[],status:400,msg:"error occured"});
+    })
+
+})
+
+
+
 Router.post('/upload',multipartyMiddleware,function(req,res){
     console.log(__dirname)
     console.log(req.files.file.path)
