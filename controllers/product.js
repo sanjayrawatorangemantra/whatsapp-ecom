@@ -201,9 +201,9 @@ Router.post('/upload',multipartyMiddleware,function(req,res){
 Router.get('/dummy',function(req,res){
   res.json({dummy:'dummy\ndummy'});
 })
-Router.get('/delbyid/:id',function(req,res){
-    console.log(req.params.id);
-    var doc = productModel.find({ _id:req.params.id }).deleteOne().exec();
+Router.post('/delbyid',function(req,res){
+    console.log(req.body.id);
+    var doc = productModel.find({ _id:req.body.id }).deleteOne().exec();
     if(doc){
         console.log(doc);
         res.status(200).json({data:doc,status:200,msg:'successfully deleted'});
