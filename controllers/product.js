@@ -55,9 +55,8 @@ Router.get('/get',function(req,res){
 })
 
 Router.get('/getProducts',function(req,res){
-    productModel.find({ }, 'name code price weight price', function (err, items) {
+    productModel.find({ }, 'name code price weight price status', function (err, items) {
         if (err) return handleError(err);
-        // 'athletes' contains the list of athletes that match the criteria.
         // res.json(items)
 
         var pro =  items.map(function(obj,i){
@@ -67,6 +66,28 @@ Router.get('/getProducts',function(req,res){
         pro = pro.join('<br>')
 
         res.send(pro);
+    })
+})
+
+Router.post('/getStoreProducts',function(req,res){
+    var storeno = req.body.storeno;
+
+    productModel.find({storeno:storeno}, 'name code price weight price storeno', function (err, items) {
+        if (err) return handleError(err);
+        // 'athletes' contains the list of athletes that match the criteria.
+        // res.json(items)
+
+        // var pro =  items.map(function(obj,i){
+        //     return i+' '+obj.name;
+        // })
+
+        // pro = pro.join('<br>')
+
+        // res.send(pro);
+        if(items.length)
+        res.status(200).json({data:items,msg:'Fetched products'});
+        else
+        res.status(404).json({data:[],msg:'Not found'});
     })
 })
 

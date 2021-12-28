@@ -5,7 +5,7 @@ var multipart = require("connect-multiparty");
 
 var product_controller = require('./controllers/product.js');
 var address_controller = require('./controllers/address.js');
-var payment  = require('./payment');
+// var payment  = require('./payment');
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
