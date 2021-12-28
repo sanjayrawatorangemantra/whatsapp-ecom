@@ -59,7 +59,7 @@
         var search = req.body.search;
 
 
-        productModel.find({name:{ $regex: search }})
+        productModel.find({name:{ $regex: search , $options : 'i'}})
         .limit(10)
         .exec(function(err, items) { 
                 if(items.length){
