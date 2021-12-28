@@ -69,9 +69,9 @@ Router.get('/getProducts',function(req,res){
     })
 })
 
-Router.post('/getStoreProducts',function(req,res){
-    var storeno = req.body.storeno;
-
+Router.get('/getStoreProducts',function(req,res){
+    var storeno = req.query.storeno;
+    console.log(storeno);
     productModel.find({storeno:storeno}, 'name code price weight price storeno', function (err, items) {
         if (err) return handleError(err);
         // 'athletes' contains the list of athletes that match the criteria.
