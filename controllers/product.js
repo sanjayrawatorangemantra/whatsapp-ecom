@@ -1,14 +1,33 @@
-
     var Router = require('express').Router();
     // Requiring the module
     const reader = require('xlsx')
+    const path = require("path");
 
     var productModel =  require('../models/product');
     var cartModel =  require('../models/cart');
     var fs = require('fs');
 
-    var multiparty = require("connect-multiparty");
-    var multipartyMiddleware = multiparty({ uploadDir:__dirname+'../Public/'});
+    // var multiparty = require("connect-multiparty");
+    // var multipartyMiddleware = multiparty({ uploadDir:__dirname+'../Public/'});
+
+    var multer = require('multer');
+    const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        // let userId = req.user._id;
+        // let path = `./public/uploads//${userId}`;
+        // fs.mkdirsSync(path);
+        // callback(null, path);
+        console.log(req.body);
+        cb(null, './Public/xls')
+    },
+    filename: function (req, file, cb) {
+        // uniqueSuffix = Math.round(Math.random() * 1E9)
+        cb(null,file.originalname)
+    }
+    })
+    
+    const upload = multer({ storage: storage })
+
 
     Router.post('/add',function(req,res){
         console.log(req.body);
@@ -133,7 +152,7 @@
             if (err) return handleError(err);
             // 'athletes' contains the list of athletes that match the criteria.
             var custom_item = items.filter((item,key)=>{
-                console.log(key,choice);
+                console.log(key,choice); 
                     return (key==choice)
             })
     console.log(custom_item);
@@ -205,11 +224,17 @@
 
 
 
-    Router.post('/upload',multipartyMiddleware,function(req,res){
-        console.log(__dirname)
-        console.log(req.files.file.path)
+    Router.post('/upload',upload.single('file'),function(req,res){
 
-        const file = reader.readFile(req.files.file.path)
+        var dir = path.resolve("./Public/xls");
+
+        // __dirname+'../Public/xls'+req.file.originalname;
+        console.log(dir)
+
+        // console.log(req.files.file.path)
+        
+        var storeno = req.body.storeno;
+        const file = reader.readFile(`${dir}/${req.file.originalname}`)
 
         let data = []
 
@@ -228,6 +253,13 @@
         console.log(data)
         for(let i = 0; i < data.length; i++)
         { console.log(data[i]);
+            console.log('-->');
+            console.log(storeno);
+
+
+            if(storeno)
+                data[i]['storeno'] = storeno;
+            
             var model = new productModel(data[i]);
 
             // Save the new model instance, passing a callback
