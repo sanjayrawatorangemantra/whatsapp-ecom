@@ -80,7 +80,7 @@
     })
 
     Router.get('/storelist',function(req,res){
-        addressModel.find({ }, 'storeno street address landmark city pincode state country lat long', function (err, items) {
+        addressModel.find({ }, 'storeno street address landmark city pincode state country lat long menu_img', function (err, items) {
             if (err) return handleError(err);
             // 'athletes' contains the list of athletes that match the criteria.
             res.status(200).json({data:items,status:200,msg:'successfully fetched stores'});
@@ -88,7 +88,7 @@
     })
 
     Router.get('/list',function(req,res){
-        addressModel.find({ }, 'street address landmark city pincode state country lat long', function (err, items) {
+        addressModel.find({ }, 'street address landmark city pincode state country lat long menu_img', function (err, items) {
             if (err) return handleError(err);
             // 'athletes' contains the list of athletes that match the criteria.
             res.render('address',{address:items});

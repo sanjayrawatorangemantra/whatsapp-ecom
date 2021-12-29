@@ -36,6 +36,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 var productModel =  require('../models/product');
+var addressModel =  require('../models/address');
 var storeModel =  require('../models/store');
 
 Router.post('/storemenu',function(req,res){
@@ -53,15 +54,30 @@ Router.post('/uploadmenu',upload.fields([{
 
           if(req.files['menu'] && req.files['file']){
             console.log('here');
-            var model = new storeModel({
-              storeno:storeno,
-              menu_img:uniqueSuffix+'-'+req.files['menu'][0].originalname
+
+            var query = {storeno:storeno},
+            update = { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][0].originalname },
+            options = { upsert: true, new: true, setDefaultsOnInsert: true };
+    
+            // Find the document
+            addressModel.findOneAndUpdate(query, update, options, function(error, result) {
+                if (error) return;
+                // do something with the document
+                if(result)
+                     res.status(200).json({msg:'successfully uploaded',data:menu});
+                else
+                    res.status(404).json({data:error,status:400,msg:"error occured"});
             });
 
-            // Save the new model instance, passing a callbak
-            model.save().then((menu)=>{
-              res.status(200).json({msg:'successfully uploaded menu',data:menu})
-            }) 
+            // var model = new storeModel({
+            //   storeno:storeno,
+            //   menu_img:uniqueSuffix+'-'+req.files['menu'][0].originalname
+            // });
+
+            // // Save the new model instance, passing a callbak
+            // model.save().then((menu)=>{
+            //   res.status(200).json({msg:'successfully uploaded menu',data:menu})
+            // }) 
 
             var dir = path.resolve("./Public/xls");
 
@@ -117,14 +133,32 @@ Router.post('/uploadmenu',upload.fields([{
               var storeno = req.body.storeno;
               // Printing data
           
-              var model = new storeModel({
-                storeno:storeno,
-                menu_img:req.files['menu'][0].originalname+'-'+uniqueSuffix
+
+              var query = {storeno:storeno},
+              update = { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][0].originalname },
+              options = { upsert: true, new: true, setDefaultsOnInsert: true };
+      
+              // Find the document
+              addressModel.findOneAndUpdate(query, update, options, function(error, result) {
+                  if (error) return;
+                  // do something with the document
+                  if(result)
+                       res.status(200).json({msg:'successfully uploaded',data:menu});
+                  else
+                      res.status(404).json({data:error,status:400,msg:"error occured"});
               });
-              // Save the new model instance, passing a callbak
-              model.save().then((menu)=>{
-                res.status(200).json({msg:'successfully uploaded',data:menu})
-              }) 
+
+
+              // var model = new storeModel({
+              //   storeno:storeno,
+              //   menu_img:req.files['menu'][0].originalname+'-'+uniqueSuffix
+              // });
+
+
+              // // Save the new model instance, passing a callbak
+              // model.save().then((menu)=>{
+              //   res.status(200).json({msg:'successfully uploaded',data:menu})
+              // }) 
           }
           else if(req.files['file']){
             

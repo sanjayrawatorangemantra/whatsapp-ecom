@@ -28,6 +28,7 @@ app.get('/', function(req, res) {
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/Public'));
 
 
 // app.get('/root',function(req,res){
