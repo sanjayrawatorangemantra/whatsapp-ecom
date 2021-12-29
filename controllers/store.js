@@ -64,7 +64,7 @@ Router.post('/uploadmenu',upload.fields([{
                 if (error) return;
                 // do something with the document
                 if(result)
-                     res.status(200).json({msg:'successfully uploaded',data:menu});
+                     res.status(200).json({msg:'successfully uploaded',data:result});
                 else
                     res.status(404).json({data:error,status:400,msg:"error occured"});
             });
@@ -82,7 +82,7 @@ Router.post('/uploadmenu',upload.fields([{
             var dir = path.resolve("./Public/xls");
 
             // __dirname+'../Public/xls'+req.file.originalname;
-            console.log(dir)
+            // console.log(dir)
     
             // console.log(req.files.file.path)
             
@@ -123,8 +123,7 @@ Router.post('/uploadmenu',upload.fields([{
                   console.log(err);
                 })
             }
-
-            res.status(200).json({msg:'successfully uploaded xls and menu image',data:{menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][0].originalname}})
+            // res.status(200).json({msg:'successfully uploaded xls and menu image',data:{menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][0].originalname}})
 
           }
           else if(req.files['menu']){
@@ -143,7 +142,7 @@ Router.post('/uploadmenu',upload.fields([{
                   if (error) return;
                   // do something with the document
                   if(result)
-                       res.status(200).json({msg:'successfully uploaded',data:menu});
+                       res.status(200).json({msg:'successfully uploaded',data:result});
                   else
                       res.status(404).json({data:error,status:400,msg:"error occured"});
               });
