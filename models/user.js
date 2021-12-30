@@ -10,7 +10,8 @@ var user = new Schema({
     status: Boolean,
     created: { type: Date, default: Date.now() },
     role: {type:String,enum:['admin','storeowner']},
-    storeno:Number
+    storeno:Number,
+    status:{type:Boolean,default:true}
     //mixed: Schema.Types.Mixed,
     //_someId: Schema.Types.ObjectId,
     //array: [],
