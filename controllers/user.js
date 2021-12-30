@@ -53,7 +53,7 @@ Router.post('/signup',async function(req,res){
             res.status(200).json({msg:'user added',data:dt});
           })
         }).catch((err)=>{
-          console.log(err);
+          res.status(400).json({msg:err});
         })
       }
 

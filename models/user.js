@@ -9,7 +9,7 @@ var user = new Schema({
     //binary: Buffer,
     status: Boolean,
     created: { type: Date, default: Date.now() },
-    role: String,
+    role: {type:String,enum:['admin','storeowner']},
     storeno:Number
     //mixed: Schema.Types.Mixed,
     //_someId: Schema.Types.ObjectId,
