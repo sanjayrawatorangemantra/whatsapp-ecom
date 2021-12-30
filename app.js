@@ -6,6 +6,7 @@ var multipart = require("connect-multiparty");
 var product_controller = require('./controllers/product.js');
 var address_controller = require('./controllers/address.js');
 var store_controller = require('./controllers/store.js');
+var user_controller = require('./controllers/user.js');
 
 // var payment  = require('./payment');
 const bodyParser = require('body-parser')
@@ -20,6 +21,7 @@ app.use(cors());
 app.use('/product',product_controller)
 app.use('/address',address_controller)
 app.use('/store',store_controller)
+app.use('/user',user_controller)
 
 app.get('/', function(req, res) {
     res.render('index');
@@ -38,4 +40,4 @@ app.use(express.static(__dirname + '/Public'));
 // app.use('/get_product',product_controller)
 // app.use('/remove_product',product_controller)
 
-module.exports = app;
+module.exports = app;``

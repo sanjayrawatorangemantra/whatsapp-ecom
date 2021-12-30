@@ -73,7 +73,7 @@
         })
     })
 
-    Router.post('/search',function(req,res){
+    Router.post('/search',async function(req,res){
         
         var search = req.body.search;
 
