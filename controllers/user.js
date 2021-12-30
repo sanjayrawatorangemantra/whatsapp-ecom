@@ -25,6 +25,18 @@ Router.post('/login',async function(req,res){
 
 });
 
+Router.get('/list',async function(req,res){
+  
+  doc = await userModel.find({role:'storeowner'}).select('-storeno -__v').exec();
+  
+  if(doc.length){
+    res.status(200).json({msg:'users list',data:doc}); 
+  }
+  else
+    res.status(400).json({msg:'no users'}); 
+
+});
+
 Router.post('/signup',async function(req,res){  
   
   var email = req.body.email;
