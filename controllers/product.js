@@ -58,7 +58,7 @@
                     console.log(store);
 
 
-                    if(store.length){
+                    if(store.length && store[0].role!='admin'){
                         var storeno = store[0].storeno;
         
                         console.log(storeno);
