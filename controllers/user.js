@@ -1,5 +1,7 @@
 var Router = require('express').Router();
 // Requiring the module
+var mongoose = require('mongoose');
+
 
 var userModel =  require('../models/user');
 
@@ -83,8 +85,15 @@ Router.
 post('/storeassign',async function(req,res){
 
     var id =  req.body.userid;
+    // var id = mongoose.Types.ObjectId(req.body.userid);
     var storeno =  req.body.storeno;
 
+    // doc = await userModel.find({
+    //   $and: [
+    //     { _id:id },
+    //     {  _id: { $ne: null } }
+    //   ]}).exec();
+    // console.log(doc);
 
     doc = await userModel.find({_id:id,role:'storeowner'}).exec();
 
