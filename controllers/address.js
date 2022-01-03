@@ -1,7 +1,8 @@
 
     var Router = require('express').Router();
     var addressModel =  require('../models/address');
-
+    var userModel =  require('../models/user');
+    
     function handleError(err)
     {
         console.log(err);
@@ -80,12 +81,108 @@
     })
 
     Router.get('/storelist',function(req,res){
-        addressModel.find({ }, 'storeno street address landmark city pincode state country lat long menu_img', function (err, items) {
-            if (err) return handleError(err);
-            // 'athletes' contains the list of athletes that match the criteria.
-            res.status(200).json({data:items,status:200,msg:'successfully fetched stores'});
+            
+        var userid = req.query.userid;
+
+        if(userid){
+            userModel.find({_id:userid }).exec().then(function (store) {
+                console.log(store);
+
+
+                if(store.length && store[0].role!='admin'){
+                    var storeno = store[0].storeno;
+    
+                    console.log(storeno);
+
+                    addressModel.find({storeno:storeno}).exec().then((store)=>{
+        
+                        // var custom_items = list.map((item)=>{
+                        //     return {
+                        //         id:item._id,
+                        //         namewithcode:item.code+' '+item.name,
+                        //         code:item.code,
+                        //         name:item.name,
+                        //         price:item.price,
+                        //         weight:item.weight,
+                        //         status:item.status,
+                        //         storeno:item.storeno
+                        //     }
+                        // })
+        
+                        if(store.length){
+                            res.status(200).json({data:store,status:200,msg:'Record found'})
+                        }
+                        else{
+                            res.status(404).json({data:[],status:404,msg:'No Record found'})
+                        }
+        
+                    // res.send('1 option1 <br> 2 option')
+                    })
+                }
+                else if(store.length && store[0].role=='admin'){
+                    addressModel.find({}).exec().then((store)=>{
+        
+                        // var custom_items = list.map((item)=>{
+                        //     return {
+                        //         id:item._id,
+                        //         namewithcode:item.code+' '+item.name,
+                        //         code:item.code,
+                        //         name:item.name,
+                        //         price:item.price,
+                        //         weight:item.weight,
+                        //         status:item.status,
+                        //         storeno:item.storeno
+                        //     }
+                        // })
+    
+                        if(store.length){
+                            res.status(200).json({data:store,status:200,msg:'Record found'})
+                        }
+                        else{
+                            res.status(404).json({data:[],status:404,msg:'No Record found'})
+                        }
+                    })                        
+                }
+                else{
+                    res.status(404).json({data:[],status:404,msg:'No Record found for this user'})
+                }
+
+            })
+
+        }
+        else{
+            addressModel.find({}).exec().then((store)=>{
+        
+                // var custom_items = list.map((item)=>{
+                //     return {
+                //         id:item._id,
+                //         namewithcode:item.code+' '+item.name,
+                //         code:item.code,
+                //         name:item.name,
+                //         price:item.price,
+                //         weight:item.weight,
+                //         status:item.status,
+                //         storeno:item.storeno
+                //     }
+                // })
+
+            if(store.length){
+                res.status(200).json({data:store,status:200,msg:'Record found'})
+            }
+            else{
+                res.status(404).json({data:[],status:404,msg:'No Record found'})
+            }
         })
+        }
     })
+
+    // Router.get('/storelist',function(req,res){
+    //     addressModel.find({ }, 'storeno street address landmark city pincode state country lat long menu_img', function (err, items) {
+    //         if (err) return handleError(err);
+    //         // 'athletes' contains the list of athletes that match the criteria.
+    //         res.status(200).json({data:items,status:200,msg:'successfully fetched stores'});
+    //     })
+    // })
 
     Router.get('/list',function(req,res){
         addressModel.find({ }, 'street address landmark city pincode state country lat long menu_img', function (err, items) {
