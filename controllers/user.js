@@ -101,7 +101,7 @@ post('/storeassign',async function(req,res){
       res.status(400).json({status:400,msg:"user is not a store owner"});
     }
     else{
-
+      
       var query = {_id:id},
       update = { storeno: storeno },
       options = { upsert: true, new: true, setDefaultsOnInsert: true };

@@ -88,6 +88,30 @@
                         // res.send('1 option1 <br> 2 option')
                         })
                     }
+                    else if(store.length && store[0].role=='admin'){
+                        productModel.find({}).exec().then((list)=>{
+            
+                            var custom_items = list.map((item)=>{
+                                return {
+                                    id:item._id,
+                                    namewithcode:item.code+' '+item.name,
+                                    code:item.code,
+                                    name:item.name,
+                                    price:item.price,
+                                    weight:item.weight,
+                                    status:item.status,
+                                    storeno:item.storeno
+                                }
+                            })
+        
+                            if(custom_items.length){
+                                res.status(200).json({data:custom_items,status:200,msg:'Record found'})
+                            }
+                            else{
+                                res.status(404).json({data:custom_items,status:404,msg:'No Record found'})
+                            }
+                        })                        
+                    }
                     else{
                         res.status(404).json({data:[],status:404,msg:'No Record found for this user'})
                     }
