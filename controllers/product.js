@@ -50,9 +50,9 @@
 
 
         Router.get('/get',function(req,res){
-            
+         
             var userid = req.query.userid;
-
+            console.log('-------->',userid);   
             if(userid){
                 userModel.find({_id:userid }).exec().then(function (store) {
                     console.log(store);

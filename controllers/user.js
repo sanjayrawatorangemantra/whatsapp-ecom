@@ -29,7 +29,7 @@ Router.post('/login',async function(req,res){
 
 Router.get('/list',async function(req,res){
   
-  doc = await userModel.find({role:'storeowner'}).select('-storeno -__v').exec();
+  doc = await userModel.find({role:'storeowner'}).select('+password -storeno -__v').exec();
   
   if(doc.length){
     res.status(200).json({msg:'users list',data:doc}); 
