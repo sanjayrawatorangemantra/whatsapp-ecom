@@ -270,7 +270,9 @@
                     console.log(storeno);
 
             productModel.find({storeno:storeno}).exec().then((items)=>{
-                if (err) return handleError(err);
+                if (err) {
+                    console.log(err);
+                }
                 // 'athletes' contains the list of athletes that match the criteria.
                 var custom_item = items.filter((item,key)=>{
                     console.log(key,choice); 
