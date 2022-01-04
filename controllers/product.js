@@ -261,7 +261,7 @@
             var phone = req.body.phone;
             var choice = req.body.choice;
             var address = req.body.address;
-
+            console.log('location--->',address);
             addressModel.find({address:address}).exec().then((store)=>{ 
                 console.log(store);
 
