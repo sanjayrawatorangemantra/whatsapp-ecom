@@ -12,10 +12,10 @@ Router.post('/login',async function(req,res){
   var password = req.body.password;
   var doc
 
-  if(role!='admin')
-    doc = await userModel.find({email:email,role:role,password:password}).exec();
+  if(1)
+    doc = await userModel.find({email:email,password:password}).exec();
   else
-    doc = await userModel.find({email:email,role:role,password:password}).select('-storeno -__v').exec();
+    doc = await userModel.find({email:email,password:password}).select('-storeno -__v').exec();
   
   
 
