@@ -185,6 +185,46 @@
             })
         })
 
+        Router.post('/getStoreProducts',function(req,res){
+            var address = req.body.address;
+            // console.log(storeno);
+
+            addressModel.find({address:address}).exec().then((store)=>{ 
+                    console.log(store);
+
+                    if(store.length){
+                        var storeno = store[0].storeno;
+                        console.log(storeno);
+
+                        productModel.find({storeno:storeno}).exec().then((list)=>{
+            
+                            var custom_items = list.map((item)=>{
+                                return {
+                                    id:item._id,
+                                    namewithcode:item.code+' '+item.name,
+                                    code:item.code,
+                                    name:item.name,
+                                    price:item.price,
+                                    weight:item.weight,
+                                    status:item.status,
+                                    storeno:item.storeno
+                                }
+                            })
+            
+                            if(custom_items.length){
+                                res.status(200).json({data:custom_items,status:200,msg:'Record found'})
+                            }
+                            else{
+                                res.status(404).json({data:custom_items,status:404,msg:'No Record found'})
+                            }
+            
+                        // res.send('1 option1 <br> 2 option')
+                        })
+                    }
+                    
+            })
+        })
+
         Router.get('/getStoreProducts',function(req,res){
             var storeno = req.query.storeno;
             console.log(storeno);

@@ -13,7 +13,7 @@ var address = new Schema({
     country: String,
     lat: String,
     long: String,
-    menu_img:String
+    menu_img:Array
     //mixed: Schema.Types.Mixed,
     //_someId: Schema.Types.ObjectId,
     //array: [],

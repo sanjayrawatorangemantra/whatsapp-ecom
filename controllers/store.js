@@ -46,28 +46,77 @@ Router.post('/storemenu',function(req,res){
 });
 
 Router.post('/uploadmenu',upload.fields([{
-          name: 'menu', maxCount: 1
+          name: 'menu', maxCount: 3
         }, {
-          name: 'file', maxCount: 1
+          name: 'file', maxCount: 10
         }]),function(req,res){
-          // console.log(req.files);
+          console.log(req.files);
 
           if(req.files['menu'] && req.files['file']){
             console.log('here');
 
+            addressModel.updateMany({}, {$unset: {"menu_img": 1}}).then(res => {
+              console.log(res.n); // Number of documents matched
+              console.log(res.nModified); // // Number of documents modified
+            }).catch(err => console.log(err));
+            
+            try{
+              var output = [];
+              for(let i=0;i<req.files['menu'].length;i++){
+                
+                var query = {storeno:storeno},
+                update = { 
+                  $push: { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][i].originalname  } 
+                  },
+                
+                options = { upsert: true, new: true, setDefaultsOnInsert: true };
+        
+
+                // Find the document
+                addressModel.findOneAndUpdate(query, update, options, function(error, result) {
+                    if (error){
+                      console.log(error);
+                      // res.status(404).json({data:error,status:400,msg:"error occured"});
+                    }
+                    // do something with the document
+
+                    if(i==req.files['menu'].length-1){
+                      res.status(200).json({msg:'successfully uploaded',data:result});
+                    }
+                    // if(result){
+                    //   console.log(result);
+                    //   output.push(result);
+                    // }
+                });
+
+              }
+
+                
+            }catch(err){
+              console.log('-->catch');
+                res.status(404).json({data:err,status:400,msg:"error occured"});
+            }
+            
+            /*
             var query = {storeno:storeno},
-            update = { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][0].originalname },
+            update = { 
+                      $push:{ menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][0].originalname }
+                     },
             options = { upsert: true, new: true, setDefaultsOnInsert: true };
-    
+    console.log(update);
             // Find the document
             addressModel.findOneAndUpdate(query, update, options, function(error, result) {
-                if (error) return;
+                if (error){
+                  console.log(error);
+                  res.status(404).json({data:error,status:400,msg:"error occured"});
+                }
                 // do something with the document
                 if(result)
                      res.status(200).json({msg:'successfully uploaded',data:result});
                 else
                     res.status(404).json({data:error,status:400,msg:"error occured"});
             });
+            */
 
             // var model = new storeModel({
             //   storeno:storeno,
@@ -128,24 +177,53 @@ Router.post('/uploadmenu',upload.fields([{
           }
           else if(req.files['menu']){
                 // console.log(req.body.storeno)  
-              console.log(uniqueSuffix)
+              console.log(req.files['menu'])
               var storeno = req.body.storeno;
               // Printing data
+            
+              addressModel.updateMany({}, {$unset: {"menu_img": 1}}).then(res => {
+                console.log(res.n); // Number of documents matched
+                console.log(res.nModified); // // Number of documents modified
+              }).catch(err => console.log(err));
+
+              try{
+                var output = [];
+                for(let i=0;i<req.files['menu'].length;i++){
+                  
+                  var query = {storeno:storeno},
+                  update = { 
+                    $push: { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][i].originalname  } 
+                    },
+                  
+                  options = { upsert: true, new: true, setDefaultsOnInsert: true };
           
 
-              var query = {storeno:storeno},
-              update = { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][0].originalname },
-              options = { upsert: true, new: true, setDefaultsOnInsert: true };
-      
-              // Find the document
-              addressModel.findOneAndUpdate(query, update, options, function(error, result) {
-                  if (error) return;
-                  // do something with the document
-                  if(result)
-                       res.status(200).json({msg:'successfully uploaded',data:result});
-                  else
-                      res.status(404).json({data:error,status:400,msg:"error occured"});
-              });
+                  // Find the document
+                  addressModel.findOneAndUpdate(query, update, options, function(error, result) {
+                      if (error){
+                        console.log(error);
+                        // res.status(404).json({data:error,status:400,msg:"error occured"});
+                      }
+                      // do something with the document
+
+                      if(i==req.files['menu'].length-1){
+                        res.status(200).json({msg:'successfully uploaded',data:result});
+                      }
+                      // if(result){
+                      //   console.log(result);
+                      //   output.push(result);
+                      // }
+                  });
+
+                }
+
+                  
+              }catch(err){
+                console.log('-->catch');
+                  res.status(404).json({data:err,status:400,msg:"error occured"});
+              }
+              
+
 
 
               // var model = new storeModel({
