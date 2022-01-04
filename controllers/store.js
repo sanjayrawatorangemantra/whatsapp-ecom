@@ -292,7 +292,7 @@ Router.post('/uploadmenu',upload.fields([{
 
           }
 
-})/
+})
 
 
 
