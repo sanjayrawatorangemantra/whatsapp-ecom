@@ -271,6 +271,7 @@
 
             productModel.find({storeno:storeno}).exec().then((items)=>{
                 if (err) {
+                    console.log('----------->');
                     console.log(err);
                 }
                 // 'athletes' contains the list of athletes that match the criteria.
