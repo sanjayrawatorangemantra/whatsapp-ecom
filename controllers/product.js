@@ -197,7 +197,7 @@
                         console.log(storeno);
 
                         productModel.find({storeno:storeno}).exec().then((list)=>{
-            
+            console.log('--list---->',list);
                             var custom_items = list.map((item)=>{
                                 return {
                                     id:item._id,
