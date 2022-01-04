@@ -7,6 +7,7 @@
         var storeModel =  require('../models/store');
         var cartModel =  require('../models/cart');
         var userModel =  require('../models/user');
+        var addressModel =  require('../models/address');
         
         var fs = require('fs');
 
