@@ -260,8 +260,16 @@
             
             var phone = req.body.phone;
             var choice = req.body.choice;
+            var address = req.body.address;
 
-            productModel.find({ }, 'name code price weight price', function (err, items) {
+            addressModel.find({address:address}).exec().then((store)=>{ 
+                console.log(store);
+
+                // if(store.length){
+                    var storeno = store[0].storeno;
+                    console.log(storeno);
+
+            productModel.find({storeno:storeno}).exec().then((list)=>{
                 if (err) return handleError(err);
                 // 'athletes' contains the list of athletes that match the criteria.
                 var custom_item = items.filter((item,key)=>{
@@ -282,7 +290,7 @@
                 }
             })
         })
-
+    })
 
 
         Router.
