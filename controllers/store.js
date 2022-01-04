@@ -27,7 +27,8 @@ const storage = multer.diskStorage({
       cb(null,file.originalname)
     }
     else if(file.fieldname=='menu'){
-      uniqueSuffix = Math.round(Math.random() * 1E9)
+      uniqueSuffix =  'uniquesfx';
+      Math.round(Math.random() * 1E9)
       cb(null, uniqueSuffix+'-'+file.originalname)
     }
 
@@ -59,7 +60,7 @@ Router.post('/uploadmenu',upload.fields([{
               console.log(res.n); // Number of documents matched
               console.log(res.nModified); // // Number of documents modified
             }).catch(err => console.log(err));
-            
+
             try{
               var output = [];
               for(let i=0;i<req.files['menu'].length;i++){
