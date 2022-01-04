@@ -40,10 +40,16 @@ var productModel =  require('../models/product');
 var addressModel =  require('../models/address');
 var storeModel =  require('../models/store');
 
-Router.post('/storemenu',function(req,res){
+Router.post('/landbot/getstoremenu',function(req,res){
     console.log(req.body);
-    
+    var address = req.body.address;
+    // console.log(storeno);
+
+    addressModel.find({address:address}).exec().then((store)=>{ 
+            console.log(store);
+            res.status(200).json({store:store})
     // res.json({s:'s'});\\\
+    });
 });
 
 Router.post('/uploadmenu',upload.fields([{
@@ -286,6 +292,8 @@ Router.post('/uploadmenu',upload.fields([{
 
           }
 
-})
+})/
+
+
 
 module.exports = Router;
