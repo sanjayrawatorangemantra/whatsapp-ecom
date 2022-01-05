@@ -188,10 +188,10 @@ Router.post('/uploadmenu',upload.fields([{
               var storeno = req.body.storeno;
               // Printing data
             
-              addressModel.updateMany({}, {$unset: {"menu_img": 1}}).then(res => {
-                console.log(res.n); // Number of documents matched
-                console.log(res.nModified); // // Number of documents modified
-              }).catch(err => console.log(err));
+              // addressModel.updateMany({}, {$unset: {"menu_img": 1}}).then(res => {
+              //   console.log(res.n); // Number of documents matched
+              //   console.log(res.nModified); // // Number of documents modified
+              // }).catch(err => console.log(err));
 
               try{
                 var output = [];
