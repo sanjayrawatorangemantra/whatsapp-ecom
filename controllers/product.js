@@ -188,7 +188,7 @@
 
         Router.post('/getStoreProducts',function(req,res){
             var address = req.body.address;
-            // console.log(storeno);
+            console.log(address);
 
             addressModel.find({address:address}).exec().then((store)=>{ 
                     console.log(store);
