@@ -73,7 +73,7 @@ Router.post('/uploadmenu',upload.fields([{
                 
                 var query = {storeno:storeno},
                 update = { 
-                  $push: { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][i].originalname  } 
+                  $push: { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][i].originalname.split(' ').join('-')  } 
                   },
                 
                 options = { upsert: true, new: true, setDefaultsOnInsert: true };
@@ -199,7 +199,7 @@ Router.post('/uploadmenu',upload.fields([{
                   
                   var query = {storeno:storeno},
                   update = { 
-                    $push: { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][i].originalname  } 
+                    $push: { menu_img:'https://demo55.mageindia.co.in/'+uniqueSuffix+'-'+req.files['menu'][i].originalname.split(' ').join('-')  } 
                     },
                   
                   options = { upsert: true, new: true, setDefaultsOnInsert: true };
