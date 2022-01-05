@@ -275,9 +275,10 @@
                 //     console.log(err);
                 // }
                 // 'athletes' contains the list of athletes that match the criteria.
+                console.log(items);
                 var custom_item = items.filter((item,key)=>{
                     console.log(key,choice); 
-                        return (key==choice)
+                        return ((key+1)==choice)
                 })
         console.log(custom_item);
                 // Create an instance of model SomeModel
