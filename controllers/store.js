@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
     else if(file.fieldname=='menu'){
       uniqueSuffix =  'uniquesfx';
       Math.round(Math.random() * 1E9)
-      cb(null, uniqueSuffix+'-'+file.originalname)
+      cb(null, uniqueSuffix+'-'+file.originalname.split(' ').join('-'))
     }
 
   }
