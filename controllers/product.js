@@ -315,24 +315,36 @@
         })
 
         Router.
-        post('/storeassign',function(req,res){
+        post('/storeassign',async function(req,res){
 
-            var id =  req.body.id;
+            // var id =  req.body.id;
+            var ids =  req.body.ids;
             var storeno =  req.body.storeno;
 
-            var query = {_id:id},
-            update = { storeno: storeno },
-            options = { upsert: true, new: true, setDefaultsOnInsert: true };
-
-            // Find the document
-            productModel.findOneAndUpdate(query, update, options, function(error, result) {
-                if (error) return;
-                // do something with the document
-                if(result)
-                    res.status(200).json({data:result,status:200,msg:'successfully assigned'});
+            for(let i=0;i<ids.length;i++){
+                
+                var query = {_id:ids[i]},
+                update = { storeno: storeno },
+                options = { upsert: true, new: true, setDefaultsOnInsert: true };
+    
+                // Find the document
+                var doc;
+                doc = await productModel.findOneAndUpdate(query, update, options).exec(); 
+                    console.log(doc);
+                //     function(error, result) {
+                //     if (error) return;
+                //     // do something with the document
+                
+                if(i==ids.length-1){
+                    if(doc)
+                    res.status(200).json({data:doc,status:200,msg:'successfully assigned'});
                 else
-                    res.status(404).json({data:result,status:400,msg:"error occured"});
-            });
+                    res.status(404).json({data:doc,status:400,msg:"error occured"});
+                }
+
+                // });
+            }
+
 
         })
 
